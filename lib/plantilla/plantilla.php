@@ -4,7 +4,6 @@
     {
 
         static function header($titulo, $opciones = array()){
-
             $menu = '';
             if(!$opciones['ocultar_menu'])
             {
@@ -13,26 +12,26 @@
 
             return "
                 <!DOCTYPE html>
-                <html lang="en">
+                <html lang=\"en\">
                     <head>
                         <meta charset=\"utf-8\"/>
-                        <meta name=\"viewport\" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                        <meta name=\"description\" content="" />
-                        <meta name=\"author\" content="" />
-                        <title>Business Casual - Start Bootstrap Theme</title>
-                        <link rel=\"icon\" type=\"image/x-icon\" href=\"assets/favicon.ico\" />
+                        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />
+                        <meta name=\"description\" content=\"\" />
+                        <meta name=\"author\" content=\"\" />
+                        <title>{$titulo}</title>
+                        <link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicon.ico\" />
                         <link href=\"https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i\" rel=\"stylesheet\" />
                         <link href=\"https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i\" rel=\"stylesheet\"/>
-                        <link href=\"css/styles.css\" rel=\"stylesheet\" />
+                        <link href=\"/css/styles.css\" rel=\"stylesheet\" />
                     </head>
                     <body>
                         <header>
                             <h1 class=\"site-heading text-center text-faded d-none d-lg-block\">
-                                <span class=\"site-heading-upper text-primary mb-3\">A Free Bootstrap Business Theme</span>
-                                <span class=\"site-heading-lower\">Business Casual</span>
+                                <span class=\"site-heading-upper text-primary mb-3\">Jamones Iván Cruz</span>
+                                <span class=\"site-heading-lower\">Calidad y Tradición</span>
                             </h1>
                         </header>
-            ". $menu;
+            " . $menu;
         }
 
         static function menu()
@@ -41,14 +40,14 @@
                 <!-- Navigation-->
                 <nav class=\"navbar navbar-expand-lg navbar-dark py-lg-4\" id=\"mainNav\">
                     <div class=\"container\">
-                        <a class=\"navbar-brand text-uppercase fw-bold d-lg-none\" href=\"index.html\">Start Bootstrap</a>
+                        <a class=\"navbar-brand text-uppercase fw-bold d-lg-none\" href=\"/\">Jamones Iván Cruz</a>
                         <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button>
                         <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
                             <ul class=\"navbar-nav mx-auto\">
-                                <li class=\"nav-item px-lg-4\"><a class=\"nav-link text-uppercase\" href=\"index.html\">Home</a></li>
-                                <li class=\"nav-item px-lg-4\"><a class=\"nav-link text-uppercase\" href=\"about.html\">About</a></li>
-                                <li class=\"nav-item px-lg-4\"><a class=\"nav-link text-uppercase\" href=\"products.html\">Products</a></li>
-                                <li class=\"nav-item px-lg-4\"><a class=\"nav-link text-uppercase\" href=\"store.html\">Store</a></li>
+                                <li class=\"nav-item px-lg-4\"><a class=\"nav-link text-uppercase\" href=\"/\">Inicio</a></li>
+                                <li class=\"nav-item px-lg-4\"><a class=\"nav-link text-uppercase\" href=\"/jamones/\">Jamones</a></li>
+                                <li class=\"nav-item px-lg-4\"><a class=\"nav-link text-uppercase\" href=\"/about\">Sobre Nosotros</a></li>
+                                <li class=\"nav-item px-lg-4\"><a class=\"nav-link text-uppercase\" href=\"/contact\">Contacto</a></li>
                             </ul>
                         </div>
                     </div>
@@ -62,14 +61,14 @@
                         <section class=\"page-section clearfix\">
                         <div class=\"container\">
                             <div class=\"intro\">
-                                <img class=\"intro-img img-fluid mb-3 mb-lg-0 rounded\" src=\"assets/img/intro.jpg\" alt=\"...\" />
+                                <img class=\"intro-img img-fluid mb-3 mb-lg-0 rounded\" src=\"/assets/img/intro.jpg\" alt=\"Jamón ibérico\" />
                                 <div class=\"intro-text left-0 text-center bg-faded p-5 rounded\">
                                     <h2 class=\"section-heading mb-4\">
-                                        <span class=\"section-heading-upper\">Fresh Coffee</span>
-                                        <span class=\"section-heading-lower\">Worth Drinking</span>
+                                        <span class=\"section-heading-upper\">Jamones de Calidad</span>
+                                        <span class=\"section-heading-lower\">Sabor Inigualable</span>
                                     </h2>
-                                    <p class=\"mb-3\">Every cup of our quality artisan coffee starts with locally sourced, hand picked ingredients. Once you try it, our coffee will be a blissful addition to your everyday morning routine - we guarantee it!</p>
-                                    <div class=\"intro-button mx-auto\"><a class=\"btn btn-primary btn-xl\" href=\"#!\">Visit Us Today!</a></div>
+                                    <p class=\"mb-3\">Cada uno de nuestros jamones es cuidadosamente seleccionado y curado para ofrecerte el mejor sabor y calidad. Una vez que lo pruebes, nuestro jamón se convertirá en una delicia imprescindible en tu mesa - ¡te lo garantizamos!</p>
+                                    <div class=\"intro-button mx-auto\"><a class=\"btn btn-primary btn-xl\" href=\"/jamones/\">Ver Nuestros Jamones</a></div>
                                 </div>
                             </div>
                         </div>
@@ -80,22 +79,22 @@
                                 <div class=\"col-xl-9 mx-auto\">
                                     <div class=\"cta-inner bg-faded text-center rounded\">
                                         <h2 class=\"section-heading mb-4\">
-                                            <span class=\"section-heading-upper\">Our Promise</span>
-                                            <span class=\"section-heading-lower\">To You</span>
+                                            <span class=\"section-heading-upper\">Nuestra Promesa</span>
+                                            <span class=\"section-heading-lower\">Para Ti</span>
                                         </h2>
-                                        <p class=\"mb-0\">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>
+                                        <p class=\"mb-0\">Cuando eliges nuestros jamones, te garantizamos un producto de la más alta calidad, elaborado con los mejores ingredientes y siguiendo métodos tradicionales. Si no estás satisfecho, háganoslo saber y haremos todo lo posible para solucionarlo.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                     <footer class=\"footer text-faded text-center py-5\">
-                        <div class=\"container\"><p class=\"m-0 small\">Copyright &copy; Your Website 2023</p></div>
+                        <div class=\"container\"><p class=\"m-0 small\">Copyright &copy; Jamones Iván Cruz 2023</p></div>
                     </footer>
                     <!-- Bootstrap core JS-->
                     <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>
                     <!-- Core theme JS-->
-                    <script src=\"js/scripts.js\"></script>
+                    <script src=\"/js/scripts.js\"></script>
                 </body>
             </html>
             ";

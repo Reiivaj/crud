@@ -4,6 +4,11 @@ class Jamon extends Tabla
 {
     const TABLA = 'jamones';
 
+    const TIPO       = ['PA' => 'Paleta', 'JA' => 'Jamón'];
+    const PUREZA     = ['DO' => 'Ibérico de Bellota con Denominación de Origen', 
+    'IBE' => 'Ibérico de bellota', 'CEC' => 'Cebo de campo', 'CE' => 'Cebo'];
+    const PORCENTAJE = ['100%' => 100, '75%' => 75, '50%' => 50];
+
     function __construct()
     {
         parent::__construct(self::TABLA);
@@ -44,5 +49,29 @@ class Jamon extends Tabla
         }
 
         return $lista_jamones;
+    }
+
+    function existeJamon($lote, $fecha_caducidad, $descripcion, $tipo, $pureza, $porcentaje, $peso, $marca, $precio_de_compra, $precio_de_venta, $id = '')
+    {
+        $opt = [];
+        
+        $opt['select']['lote']            = '';
+        $opt['where']['lote']             = $lote;
+        $opt['where']['fecha_caducidad']  = $fecha_caducidad;
+        $opt['where']['descripcion']      = $descripcion;
+        $opt['where']['tipo']             = $tipo;
+        $opt['where']['pureza']           = $pureza;
+        $opt['where']['porcentaje']       = $porcentaje;
+        $opt['where']['peso']             = $peso;
+        $opt['where']['marca']            = $marca;
+        $opt['where']['precio_de_compra'] = $precio_de_compra;
+        $opt['where']['precio_de_venta']  = $precio_de_venta;
+
+        if(!empty($id))
+            $opt['notwhere']['id'] = $id;
+    
+        $resultado = $this->seleccionar($opt);
+
+        return $resultado->num_rows;
     }
 }

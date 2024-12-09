@@ -21,9 +21,9 @@ class JamonesCRUD extends ProgramaBase
         $lote               = new Input('lote'           , ['placeholder' => 'Número de lote...'      , 'validar' => True, 'ereg' => EREG_NUMERO_OBLIGATORIO]);
         $fecha_caducidad    = new Input('fecha_caducidad', ['placeholder' => 'Fecha de caducidad...' , 'validar' => True, 'ereg' => EREG_FECHA_OBLIGATORIO]);
         $descripcion        = new Textarea('descripcion'   , ['placeholder' => 'Descripción del jamón...', 'validar' => True]);
-        $tipo               = new Input('tipo'            , ['placeholder' => 'Tipo de jamón...'         , 'validar' => True, 'ereg' => EREG_TEXTO_100_OBLIGATORIO]);
-        $pureza             = new Input('pureza'          , ['placeholder' => 'Pureza del jamón...'      , 'validar' => True, 'ereg' => EREG_TEXTO_100_OBLIGATORIO]);
-        $porcentaje         = new Input('porcentaje'      , ['placeholder' => 'Porcentaje de pureza...'  , 'validar' => True, 'ereg' => EREG_NUMERO_100_OBLIGATORIO]);
+        $tipo               = new Select('tipo', ['options' => Jamon::TIPO, 'placeholder' => 'Seleccione el tipo...', 'validar' => True]);
+        $pureza             = new Select('pureza', ['options' => Jamon::PUREZA, 'placeholder' => 'Seleccione la pureza...', 'validar' => True]);
+        $porcentaje         = new Select('porcentaje', ['options' => Jamon::PORCENTAJE, 'placeholder' => 'Seleccione el porcentaje...', 'validar' => True]);
         $peso               = new Input('peso'            , ['placeholder' => 'Peso del jamón...'         , 'validar' => True, 'ereg' => EREG_NUMERO_100_OBLIGATORIO]);
         $marca              = new Input('marca'           , ['placeholder' => 'Marca del jamón...'        , 'validar' => True, 'ereg' => EREG_TEXTO_100_OBLIGATORIO]);
         $precio_de_compra   = new Input('precio_de_compra' , ['placeholder' => 'Precio de compra...'    , 'validar' => True, 'ereg' => EREG_NUMERO_OBLIGATORIO]);
@@ -46,35 +46,33 @@ class JamonesCRUD extends ProgramaBase
 
     function existe($id = '')
     {
-        $cantidad = 0;
-        if (!empty($this->form->val['lote'])
-            && !empty($this->form->val['fecha_caducidad'])
-            && !empty($this->form->val['descripcion'])
-            && !empty($this->form->val['tipo'])
-            && !empty($this->form->val['pureza'])
-            && !empty($this->form->val['porcentaje'])
-            && !empty($this->form->val['peso'])
-            && !empty($this->form->val['marca'])
-            && !empty($this->form->val['precio_de_compra'])
-            && !empty($this->form->val['precio_de_venta'])
+        if (empty($this->form->val['lote']) ||
+            empty($this->form->val['fecha_caducidad']) ||
+            empty($this->form->val['descripcion']) ||
+            empty($this->form->val['tipo']) ||
+            empty($this->form->val['pureza']) ||
+            empty($this->form->val['porcentaje']) ||
+            empty($this->form->val['peso']) ||
+            empty($this->form->val['marca']) ||
+            empty($this->form->val['precio_de_compra']) ||
+            empty($this->form->val['precio_de_venta'])
         ) {
-
-            $cantidad = $this->jamon->existeJamon(
-                $this->form->val['lote'],
-                $this->form->val['fecha_caducidad'],
-                $this->form->val['descripcion'],
-                $this->form->val['tipo'],
-                $this->form->val['pureza'],
-                $this->form->val['porcentaje'],
-                $this->form->val['peso'],
-                $this->form->val['marca'],
-                $this->form->val['precio_de_compra'],
-                $this->form->val['precio_de_venta'],
-                $this->form->val['id']
-            );
+            return false;
         }
 
-        return $cantidad;
+        return $this->jamon->existeJamon(
+            $this->form->val['lote'],
+            $this->form->val['fecha_caducidad'],
+            $this->form->val['descripcion'],
+            $this->form->val['tipo'],
+            $this->form->val['pureza'],
+            $this->form->val['porcentaje'],
+            $this->form->val['peso'],
+            $this->form->val['marca'],
+            $this->form->val['precio_de_compra'],
+            $this->form->val['precio_de_venta'],
+            $id
+        ) > 0;
     }
 
     function recuperar()
@@ -134,9 +132,9 @@ class JamonesCRUD extends ProgramaBase
                         </th>
                         <td>{$fila['lote']}</td>
                         <td>{$fila['descripcion']}</td>
-                        <td>{$fila['tipo']}</td>
-                        <td>{$fila['pureza']}</td>
-                        <td>{$fila['porcentaje']}</td>
+                        <td>" . Jamon::TIPO[$fila['tipo']] . "</td>
+                        <td>" . Jamon::PUREZA[$fila['pureza']] . "</td>
+                        <td>" . Jamon::PORCENTAJE[$fila['porcentaje']] . "</td>
                         <td>{$fila['peso']}</td>
                         <td>{$fila['marca']}</td>
                         <td>{$fila['precio_de_compra']}</td>

@@ -2,16 +2,18 @@
     RewriteEngine On
     
     # Redirigir la URL /jamones/ a /index.php?seccion=jamones
-    RewriteRule ^jamones/$                          /index.php?seccion=jamones [L]
-    RewriteRule ^jamones/ver/([0-9]+)$               /index.php?seccion=jamones&oper=ver&id=$1 [L]
+    RewriteRule ^jamones/$  /index.php?seccion=jamones [L]
+    RewriteRule ^jamones/ver/([0-9]+)$  /index.php?seccion=jamones&oper=ver&id=$1 [L]
 
-    RewriteRule ^jamones/alta/$                      /index.php?seccion=jamones&oper=create [L]
-    RewriteRule ^jamones/actualizar/([0-9]+)$        /index.php?seccion=jamones&oper=update&id=$1 [L]
-    RewriteRule ^jamones/eliminar/([0-9]+)$          /index.php?seccion=jamones&oper=delete&id=$1 [L]
+    RewriteRule ^jamones/alta/$  /index.php?seccion=jamones&oper=create [L]
+    RewriteRule ^jamones/actualizar/([0-9]+)$  /index.php?seccion=jamones&oper=update&id=$1 [L]
+    RewriteRule ^jamones/eliminar/([0-9]+)$  /index.php?seccion=jamones&oper=delete&id=$1 [L]
 
-    # Redirigir la URL de jamones por tipo, por ejemplo: /jamones/tipo/paletilla
-    RewriteRule ^jamones/tipo/([a-zA-Z0-9-]+)$       /index.php?seccion=jamones&oper=tipo&tipo=$1 [L]
-    RewriteRule ^jamones/pureza/([a-zA-Z0-9-]+)$     /index.php?seccion=jamones&oper=pureza&pureza=$1 [L]
-    RewriteRule ^jamones/porcentaje/([0-9]+)$        /index.php?seccion=jamones&oper=porcentaje&porcentaje=$1 [L]
+    # Redirigir la URL de jamones por tipo, pureza y porcentaje
+    RewriteRule ^jamones/tipo/(PA|JA)$  /index.php?seccion=jamones&oper=tipo&tipo=$1 [L]
+    RewriteRule ^jamones/pureza/(DO|IBE|CEC|CE)$  /index.php?seccion=jamones&oper=pureza&pureza=$1 [L]
+    RewriteRule ^jamones/porcentaje/(100|75|50)$  /index.php?seccion=jamones&oper=porcentaje&porcentaje=$1 [L]
     
+    # Regla para la paginación
+    RewriteRule ^jamones/pag/([0-9]+)$  /index.php?seccion=jamones&pagina=$1 [L]
 </IfModule>
