@@ -1,151 +1,141 @@
 <?php
 
-$tipo = $pureza = $porcentaje = $peso = $marca = $precio_de_compra = $precio_de_venta = '';
-$error_tipo = $error_pureza = $error_porcentaje = $error_peso = $error_marca = $error_precio_de_compra = $error_precio_de_venta = False;
 
-$errores = '';
-$mensaje_ok = '';
+    $nombre = $email = $edad =  '';
 
-if(!empty($_POST['paso'])) {
+    $error_nombre = $error_email =  $error_edad = False;
 
-    if (empty($_POST['tipo'])) {
-        $errores .= "<span class=\"error\">¡ERROR! No se ha enviado ningún tipo de jamón.<br /></span>";
-        $error_tipo = True;
+
+    $errores = $hola_nombre= '';
+    if(!empty($_POST['paso']))
+    {
+
+
+        if (empty($_POST['nombre']))
+        {
+            $errores = "<span class=\"error\">¡ERROR! No se ha enviado ningún nombre.<br /></span>";
+            $error_nombre = True;
+        }
+        else if(strlen($_POST['nombre']) < 5)
+        {
+            $errores = "<span class=\"error\">¡ERROR! El número de caracteres de nombre, es menor a 5.<br /></span>";
+            $error_nombre = True;
+        }
+
+        if (empty($_POST['email']))
+        {
+            $errores .= "<span class=\"error\">¡ERROR! No se ha enviado ningún E-mail.<br /></span>";
+            $error_email = True;
+        }
+
+        if (empty($_POST['edad']))
+        {
+            $errores .= "<span class=\"error\">¡ERROR! No se ha enviado la Edad.<br /></span>";
+            $error_edad = True;
+        }
+            
+
+        
+        if (empty($errores))
+        {
+            //$hola_nombre = '<span class="ok">Hola ' . $_POST['nombre'] .'</span>';
+            $hola_nombre = "<span class=\"ok\">Hola {$_POST['nombre']}</span>";
+        }
+        else
+        {
+            if ($error_nombre)
+                $error_nombre = 'error_nombre';
+
+            if ($error_email)
+                $error_email = 'error_email';
+
+            if ($error_edad)
+                $error_edad = 'error_edad';
+
+        }
+
+        $nombre = $_POST['nombre'];
+        $email  = $_POST['email'];
+        $edad   = $_POST['edad'];
     }
 
-    if (empty($_POST['pureza'])) {
-        $errores .= "<span class=\"error\">¡ERROR! No se ha enviado la pureza del jamón.<br /></span>";
-        $error_pureza = True;
-    }
-
-    if (empty($_POST['porcentaje']) || !is_numeric($_POST['porcentaje']) || $_POST['porcentaje'] < 0 || $_POST['porcentaje'] > 100) {
-        $errores .= "<span class=\"error\">¡ERROR! El porcentaje debe ser un número entre 0 y 100.<br /></span>";
-        $error_porcentaje = True;
-    }
-
-    if (empty($_POST['peso']) || !is_numeric($_POST['peso'])) {
-        $errores .= "<span class=\"error\">¡ERROR! El peso debe ser un número.<br /></span>";
-        $error_peso = True;
-    }
-
-    if (empty($_POST['marca'])) {
-        $errores .= "<span class=\"error\">¡ERROR! No se ha enviado la marca.<br /></span>";
-        $error_marca = True;
-    }
-
-    if (empty($_POST['precio_de_compra']) || !is_numeric($_POST['precio_de_compra'])) {
-        $errores .= "<span class=\"error\">¡ERROR! El precio de compra debe ser un número válido.<br /></span>";
-        $error_precio_de_compra = True;
-    }
-
-    if (empty($_POST['precio_de_venta']) || !is_numeric($_POST['precio_de_venta'])) {
-        $errores .= "<span class=\"error\">¡ERROR! El precio de venta debe ser un número válido.<br /></span>";
-        $error_precio_de_venta = True;
-    }
-
-    if (empty($errores)) {
-        $mensaje_ok = "<span class=\"ok\">Los datos se han enviado correctamente.</span>";
-    }
-
-    $tipo               = $_POST['tipo'];
-    $pureza             = $_POST['pureza'];
-    $porcentaje         = $_POST['porcentaje'];
-    $peso               = $_POST['peso'];
-    $marca              = $_POST['marca'];
-    $precio_de_compra   = $_POST['precio_de_compra'];
-    $precio_de_venta    = $_POST['precio_de_venta'];
-}
 
 ?>
 
+
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Jamones</title>
+    <title>Formulario de envío</title>
     <style type="text/css">
-        .error {
-            color: #ff0000;
-            font-weight: bold;
+
+        .error_nombre, .error_email, .error_edad{
+
+            color:#ff0000;
+            font-weight:bold;
         }
 
-        .ok {
-            color: #fff;
-            background: #00ff00;
-            font-weight: bold;
-            padding: 5px;
+        .error, .ok{
+            font-weight:bold;
+            color:#fff;
+        }
+        .error{
+            background:#ff0000;
+        }
+        .ok{
+            background:#00ff00;
         }
 
-        .campo {
-            clear: both;
+        .campo{
+            clear:both;
             padding: 5px 0;
         }
 
-        .campo > label, .campo > input {
-            float: left;
+        .campo > label, .campo > input{
+            float:left;
         }
 
-        .campo > label {
-            width: 150px;
-            display: block;
+        .campo > label{
+            width: 70px;
+            display:block;
+
         }
 
-        .campo > input {
-            width: 300px;
-        }
 
-        .error_tipo, .error_pureza, .error_porcentaje, .error_peso, .error_marca, .error_precio_de_compra, .error_precio_de_venta {
-            color: #ff0000;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
-    <form action="formulario_jamones.php" method="POST">
+    <form action="formulario.php" method="POST">
         <input type="hidden" name="paso" value="1" />
-        <?php echo $errores; ?>
+        <? echo $errores; ?>
 
         <div class="campo">
-            <label class="<?php echo $error_tipo ? 'error_tipo' : ''; ?>" for="tipo">Tipo:</label>
-            <input type="text" id="tipo" name="tipo" value="<?php echo $tipo; ?>" placeholder="Ej. Paletilla, Jamón..." />
-        </div>
-
+            <label class="<? echo $error_nombre; ?>" for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="<? echo $nombre; ?>" placeholder="Nombre de la persona..."> 
+        </div>  
+        
         <div class="campo">
-            <label class="<?php echo $error_pureza ? 'error_pureza' : ''; ?>" for="pureza">Pureza:</label>
-            <input type="text" id="pureza" name="pureza" value="<?php echo $pureza; ?>" placeholder="Ej. Ibérico, Serrano..." />
+            <label class="<? echo $error_email; ?>" for="email">E-mail:</label>
+            <input type="email" id="email" name="email" value="<? echo $email; ?>" placeholder="E-mail..."> 
         </div>
-
         <div class="campo">
-            <label class="<?php echo $error_porcentaje ? 'error_porcentaje' : ''; ?>" for="porcentaje">Porcentaje:</label>
-            <input type="number" id="porcentaje" name="porcentaje" value="<?php echo $porcentaje; ?>" placeholder="Ej. 75" />
+            <label class="<? echo $error_edad; ?>" for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" value="<? echo $edad; ?>" placeholder="Introduce tu edad..."> 
         </div>
-
+        
         <div class="campo">
-            <label class="<?php echo $error_peso ? 'error_peso' : ''; ?>" for="peso">Peso (kg):</label>
-            <input type="number" step="0.001" id="peso" name="peso" value="<?php echo $peso; ?>" placeholder="Ej. 5.5" />
+            <input type="submit">
         </div>
+        
+        
 
-        <div class="campo">
-            <label class="<?php echo $error_marca ? 'error_marca' : ''; ?>" for="marca">Marca:</label>
-            <input type="text" id="marca" name="marca" value="<?php echo $marca; ?>" placeholder="Marca del jamón..." />
-        </div>
-
-        <div class="campo">
-            <label class="<?php echo $error_precio_de_compra ? 'error_precio_de_compra' : ''; ?>" for="precio_de_compra">Precio de Compra:</label>
-            <input type="number" step="0.01" id="precio_de_compra" name="precio_de_compra" value="<?php echo $precio_de_compra; ?>" placeholder="Ej. 50.00" />
-        </div>
-
-        <div class="campo">
-            <label class="<?php echo $error_precio_de_venta ? 'error_precio_de_venta' : ''; ?>" for="precio_de_venta">Precio de Venta:</label>
-            <input type="number" step="0.01" id="precio_de_venta" name="precio_de_venta" value="<?php echo $precio_de_venta; ?>" placeholder="Ej. 80.00" />
-        </div>
-
-        <div class="campo">
-            <input type="submit" value="Enviar">
-        </div>
+        
+        
+        
     </form>
-
-    <?php echo $mensaje_ok; ?>
+    <?php echo $hola_nombre; ?>
 </body>
 </html>

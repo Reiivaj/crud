@@ -154,7 +154,7 @@
             return "
                 <nav aria-label=\"breadcrumb\">
                     <ol class=\"breadcrumb\">
-                        <li class=\"breadcrumb-item\">". enlace('/','Jamones Iván Cruz',['title' => 'Volver a la página principal']) ."</li>
+                        <li class=\"breadcrumb-item\">". enlace('/','Zonzamas',['title' => 'Volver a la página principal']) ."</li>
                         {$breadcrumb}
                     </ol>
                 </nav>

@@ -4,10 +4,12 @@
     {
         private static $instance;
 
+        //Datos de conexión
         private const SERVIDOR = 'localhost';
-        private const USUARIO  = 'cruz';
-        private const PASSWORD = 'csas1234.';
-        private const BBDD     = 'JAMONES_CRUZ';
+        private const USUARIO  = 'juanra';
+        private const PASSWORD = 'DaWSegundo+';
+        private const BBDD     = 'zonzamas';
+
 
         private function __construct()
         {      
@@ -44,3 +46,4 @@
             return self::$instance->conexion->query($query);
         }
     }
+

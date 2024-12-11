@@ -13,26 +13,15 @@
             {
                 case 'ES':
                     $this->lit = [
-                         'lote'               => 'Lote'
+                         'nombre'             => 'Nombre'
                        , 'descripcion'        => 'Descripción'
-                       , 'fecha_caducidad'    => 'Fecha de caducidad'
-                       , 'peso'               => 'Peso'
-                       , 'precio_de_compra'   => 'Precio de compra'
-                       , 'precio_de_venta'    => 'Precio de venta'
-
-                       , 'tipo'               => 'Tipo'
-                       , 'pureza'             => 'Pureza'
-                       , 'porcentaje'         => 'Porcentaje'
-                       , 'marca'              => 'Marca'
-                       
-
-                       , 'error_gen'          => 'El campo es inválido'
-
+                       , 'autor'              => 'Autor'
+                       , 'editorial'          => 'Editorial'
                        , 'enviar'             => 'Enviar'
+                       , 'error_gen'          => 'El campo es inválido'
                        , 'nuevo'              => 'Nuevo'
                        , 'editar'             => 'Editar'
-                       , 'lista_jamones'      => 'Listado de jamones'
-
+                       , 'lista_ciclos'       => 'Listado de ciclos'
                        , 'mensaje_duplicados' => 'Hay un registro duplicado en BBDD'
                        , 'mensaje_exito'      => 'Operación realizada con éxito'
  
